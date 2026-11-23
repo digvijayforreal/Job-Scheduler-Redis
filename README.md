@@ -35,9 +35,13 @@ Plus a live web dashboard with real-time updates.
 
 ## Quick start
 
+Dependencies are managed with [uv](https://docs.astral.sh/uv/). `uv sync`
+creates a local `.venv` (Python 3.12, pinned in `.python-version`) and installs
+the exact versions from `uv.lock`.
+
 ```bash
-pip install -r requirements.txt
-uvicorn app.main:app --reload
+uv sync
+uv run uvicorn app.main:app --reload
 ```
 
 - **Dashboard:** http://127.0.0.1:8000/
@@ -46,8 +50,11 @@ uvicorn app.main:app --reload
 Run the tests:
 
 ```bash
-pytest
+uv run pytest
 ```
+
+To add a dependency: `uv add <package>` (or `uv add --dev <package>` for
+test-only tools).
 
 ---
 
@@ -65,8 +72,11 @@ job-scheduler/
 ├── tests/                 # pytest suite (one file per task + bonuses)
 ├── docs/dashboard.svg     # UI preview
 ├── .env                   # Redis settings (git-ignored)
+├── .env.example           # template for .env
 ├── pytest.ini
-└── requirements.txt
+├── pyproject.toml         # dependencies (managed by uv)
+├── uv.lock                # pinned dependency versions
+└── .python-version        # Python 3.12
 ```
 
 ---
@@ -161,12 +171,21 @@ By default tasks are kept in memory and lost on restart. Enable Redis to make
 them **survive restarts**. Redis is used only as a datastore — the queue,
 scheduler, and workers remain hand-written code.
 
-Settings live in a `.env` file at the project root:
+Settings live in a `.env` file at the project root. Start from the template:
+
+```bash
+cp .env.example .env
+```
+
+Then set:
 
 ```
 REDIS_ENABLED=true
 REDIS_URL=redis://default:PASSWORD@host:port
 ```
+
+The connection string is read only from `.env` or the environment. There is
+no default in code.
 
 Then start the app normally — you'll see `Redis persistence enabled` at startup.
 If Redis is disabled or unreachable, the app logs a note and runs in-memory
@@ -183,7 +202,7 @@ one locally with Docker: `docker run -p 6379:6379 redis`.
 ## Tests
 
 ```bash
-pytest
+uv run pytest
 ```
 
 22 tests cover submission, status transitions, cancellation, priority ordering,

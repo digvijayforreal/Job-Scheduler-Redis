@@ -41,7 +41,7 @@ async def lifespan(app: FastAPI):
         try:
             from .persistence import RedisStore
 
-            queue_manager.attach_store(RedisStore(config.REDIS_URL))
+            queue_manager.attach_store(RedisStore(config.REDIS_URL, config.REDIS_TASK_TTL))
             print("Redis persistence enabled")
         except Exception as exc:
             print(f"Redis unavailable ({exc}); using in-memory storage")

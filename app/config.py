@@ -27,4 +27,12 @@ WORKER_COUNT = 3
 SCHEDULER_POLL_INTERVAL = 0.5
 
 REDIS_ENABLED = os.getenv("REDIS_ENABLED", "false").lower() in  ("1","true","yes")
-REDIS_URL = 
+
+# Redis connection string. It comes only from .env or the environment and
+# never lives in code. See .env.example for the format.
+REDIS_URL = os.getenv("REDIS_URL", "")
+
+# Seconds before a saved task auto-expires (TTL) in Redis.
+# This default (1 hour) is used unless you override REDIS_TASK_TTL in .env.
+# Set to 0 to keep tasks forever (no expiry).
+REDIS_TASK_TTL = int(os.getenv("REDIS_TASK_TTL", "3600"))
