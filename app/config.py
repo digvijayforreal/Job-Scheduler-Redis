@@ -27,4 +27,4 @@ WORKER_COUNT = 3
 SCHEDULER_POLL_INTERVAL = 0.5
 
 REDIS_ENABLED = os.getenv("REDIS_ENABLED", "false").lower() in  ("1","true","yes")
-REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+REDIS_URL = 
