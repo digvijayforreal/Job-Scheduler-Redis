@@ -1,0 +1,7 @@
+# Environment files (may contain Redis passwords)
+.env
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/

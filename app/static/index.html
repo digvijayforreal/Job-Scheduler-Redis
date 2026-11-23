@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Queue &amp; Scheduler</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">TQ</div>
+      <div>
+        <h1>Task Queue &amp; Scheduler</h1>
+        <p class="subtitle">Background jobs, priorities &amp; scheduling</p>
+      </div>
+    </div>
+    <div class="health" id="health">
+      <span class="dot" id="health-dot"></span>
+      <span id="health-text">checking…</span>
+    </div>
+  </header>
+
+  <!-- Live queue stats -->
+  <section class="stats" id="stats"></section>
+
+  <main class="layout">
+    <!-- Submit form -->
+    <section class="card form-card">
+      <h2>Submit a task</h2>
+      <form id="task-form">
+        <label>
+          Task type
+          <input name="task_type" type="text" placeholder="data_processing" required />
+        </label>
+
+        <div class="row">
+          <label>
+            Duration (seconds)
+            <input name="duration" type="number" min="0" value="5" required />
+          </label>
+          <label>
+            Priority
+            <select name="priority">
+              <option value="high">High</option>
+              <option value="medium" selected>Medium</option>
+              <option value="low">Low</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Schedule for later <span class="hint">(optional)</span>
+          <input name="scheduled_at" type="datetime-local" />
+        </label>
+
+        <label class="checkbox">
+          <input name="should_fail" type="checkbox" />
+          <span>Make this task fail (demo the FAILED status)</span>
+        </label>
+
+        <button type="submit" class="btn-primary">Add to queue</button>
+        <p class="form-msg" id="form-msg"></p>
+      </form>
+    </section>
+
+    <!-- Task list -->
+    <section class="card list-card">
+      <div class="list-head">
+        <h2>Tasks</h2>
+        <div class="filters" id="filters">
+          <button data-filter="all" class="active">All</button>
+          <button data-filter="pending">Pending</button>
+          <button data-filter="running">Running</button>
+          <button data-filter="completed">Completed</button>
+          <button data-filter="failed">Failed</button>
+          <button data-filter="cancelled">Cancelled</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Type</th>
+              <th>Priority</th>
+              <th>Status</th>
+              <th>Duration</th>
+              <th>Exec</th>
+              <th>Scheduled</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="task-rows"></tbody>
+        </table>
+        <p class="empty" id="empty">No tasks yet. Submit one to get started.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

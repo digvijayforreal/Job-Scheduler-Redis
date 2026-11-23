@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="680" viewBox="0 0 1100 680" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef1f6"/>
+      <stop offset="1" stop-color="#e7ebf3"/>
+    </linearGradient>
+    <linearGradient id="logo" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3b5bdb"/>
+      <stop offset="1" stop-color="#2f49b0"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#101828" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <rect width="1100" height="680" fill="url(#bg)"/>
+
+  <!-- Header -->
+  <g transform="translate(40,28)">
+    <rect x="0" y="0" width="44" height="44" rx="12" fill="url(#logo)"/>
+    <text x="22" y="29" fill="#fff" font-size="15" font-weight="700" text-anchor="middle">TQ</text>
+    <text x="58" y="20" fill="#1f2733" font-size="20" font-weight="650">Task Queue &amp; Scheduler</text>
+    <text x="58" y="40" fill="#727d8c" font-size="13">Background jobs, priorities &amp; scheduling</text>
+    <!-- health pill -->
+    <g transform="translate(880,6)">
+      <rect x="0" y="0" width="140" height="34" rx="17" fill="#ffffff" stroke="#e3e7ee"/>
+      <circle cx="22" cy="17" r="5" fill="#27a567"/>
+      <text x="38" y="22" fill="#46505f" font-size="13" font-weight="500">healthy</text>
+    </g>
+  </g>
+
+  <!-- Stats row -->
+  <g transform="translate(40,96)">
+    <!-- 9 tiles -->
+    <g>
+      <rect x="0"   y="0" width="108" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="54" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">3</text>
+      <text x="54" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">WORKERS</text>
+    </g>
+    <g transform="translate(118,0)">
+      <rect width="108" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="54" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">2</text>
+      <text x="54" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">QUEUED</text>
+    </g>
+    <g transform="translate(236,0)">
+      <rect width="108" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="54" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">1</text>
+      <text x="54" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">SCHEDULED</text>
+    </g>
+    <g transform="translate(354,0)">
+      <rect width="108" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="54" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">3</text>
+      <text x="54" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">RUNNING</text>
+    </g>
+    <g transform="translate(472,0)">
+      <rect width="108" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="54" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">12</text>
+      <text x="54" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">COMPLETED</text>
+    </g>
+    <g transform="translate(590,0)">
+      <rect width="108" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="54" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">1</text>
+      <text x="54" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">FAILED</text>
+    </g>
+    <g transform="translate(708,0)">
+      <rect width="108" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="54" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">1</text>
+      <text x="54" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">CANCELLED</text>
+    </g>
+    <g transform="translate(826,0)">
+      <rect width="88" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="44" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">19</text>
+      <text x="44" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">TOTAL</text>
+    </g>
+    <g transform="translate(924,0)">
+      <rect width="96" height="64" rx="12" fill="#fff" stroke="#e3e7ee"/>
+      <text x="48" y="30" text-anchor="middle" font-size="22" font-weight="680" fill="#1f2733">3.4s</text>
+      <text x="48" y="48" text-anchor="middle" font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">AVG EXEC</text>
+    </g>
+  </g>
+
+  <!-- Submit form card -->
+  <g transform="translate(40,184)">
+    <rect width="320" height="440" rx="16" fill="#fff" stroke="#e3e7ee" filter="url(#shadow)"/>
+    <text x="24" y="38" font-size="15" font-weight="650" fill="#1f2733">Submit a task</text>
+
+    <text x="24" y="74" font-size="12" fill="#46505f">Task type</text>
+    <rect x="24" y="82" width="272" height="38" rx="9" fill="#f7f8fb" stroke="#d4dae4"/>
+    <text x="36" y="106" font-size="13" fill="#9aa4b2">data_processing</text>
+
+    <text x="24" y="146" font-size="12" fill="#46505f">Duration (seconds)</text>
+    <rect x="24" y="154" width="128" height="38" rx="9" fill="#f7f8fb" stroke="#d4dae4"/>
+    <text x="36" y="178" font-size="13" fill="#1f2733">5</text>
+    <text x="168" y="146" font-size="12" fill="#46505f">Priority</text>
+    <rect x="168" y="154" width="128" height="38" rx="9" fill="#f7f8fb" stroke="#d4dae4"/>
+    <text x="180" y="178" font-size="13" fill="#1f2733">High</text>
+
+    <text x="24" y="218" font-size="12" fill="#46505f">Schedule for later (optional)</text>
+    <rect x="24" y="226" width="272" height="38" rx="9" fill="#f7f8fb" stroke="#d4dae4"/>
+    <text x="36" y="250" font-size="13" fill="#9aa4b2">mm/dd/yyyy --:--</text>
+
+    <rect x="24" y="284" width="16" height="16" rx="4" fill="#fff" stroke="#d4dae4"/>
+    <text x="50" y="297" font-size="13" fill="#46505f">Make this task fail (demo FAILED)</text>
+
+    <rect x="24" y="328" width="272" height="44" rx="10" fill="#3b5bdb"/>
+    <text x="160" y="356" text-anchor="middle" font-size="14" font-weight="600" fill="#fff">Add to queue</text>
+
+    <text x="24" y="402" font-size="12" fill="#1f8a54">Added task_a1b2c3d4 (pending)</text>
+  </g>
+
+  <!-- Task list card -->
+  <g transform="translate(380,184)">
+    <rect width="680" height="440" rx="16" fill="#fff" stroke="#e3e7ee" filter="url(#shadow)"/>
+    <text x="24" y="38" font-size="15" font-weight="650" fill="#1f2733">Tasks</text>
+
+    <!-- filter pills -->
+    <g font-size="11" font-weight="600">
+      <rect x="300" y="22" width="40" height="24" rx="12" fill="#3b5bdb"/>
+      <text x="320" y="38" text-anchor="middle" fill="#fff">All</text>
+      <rect x="346" y="22" width="62" height="24" rx="12" fill="#f7f8fb" stroke="#e3e7ee"/>
+      <text x="377" y="38" text-anchor="middle" fill="#727d8c">Pending</text>
+      <rect x="414" y="22" width="62" height="24" rx="12" fill="#f7f8fb" stroke="#e3e7ee"/>
+      <text x="445" y="38" text-anchor="middle" fill="#727d8c">Running</text>
+      <rect x="482" y="22" width="78" height="24" rx="12" fill="#f7f8fb" stroke="#e3e7ee"/>
+      <text x="521" y="38" text-anchor="middle" fill="#727d8c">Completed</text>
+      <rect x="566" y="22" width="52" height="24" rx="12" fill="#f7f8fb" stroke="#e3e7ee"/>
+      <text x="592" y="38" text-anchor="middle" fill="#727d8c">Failed</text>
+    </g>
+
+    <!-- table header -->
+    <g font-size="10" font-weight="600" fill="#727d8c" letter-spacing="0.5">
+      <text x="24" y="74">TYPE</text>
+      <text x="230" y="74">PRIORITY</text>
+      <text x="330" y="74">STATUS</text>
+      <text x="470" y="74">DURATION</text>
+      <text x="560" y="74">EXEC</text>
+    </g>
+    <line x1="24" y1="84" x2="656" y2="84" stroke="#e3e7ee"/>
+
+    <!-- rows -->
+    <!-- row 1 running -->
+    <g transform="translate(0,84)">
+      <text x="24" y="28" font-size="13" font-weight="550" fill="#1f2733">data_processing</text>
+      <text x="24" y="44" font-size="11" fill="#727d8c" font-family="monospace">task_a1b2c3d4</text>
+      <text x="230" y="30" font-size="12" font-weight="600" fill="#c23b3b">high</text>
+      <rect x="330" y="16" width="76" height="22" rx="6" fill="#e6edfb"/>
+      <circle cx="344" cy="27" r="3.5" fill="#2f5fd0"/>
+      <text x="354" y="31" font-size="11.5" font-weight="600" fill="#2f5fd0">running</text>
+      <text x="470" y="30" font-size="13" fill="#46505f">5s</text>
+      <text x="560" y="30" font-size="13" fill="#46505f">—</text>
+      <line x1="24" y1="54" x2="656" y2="54" stroke="#eef1f5"/>
+    </g>
+    <!-- row 2 completed -->
+    <g transform="translate(0,142)">
+      <text x="24" y="28" font-size="13" font-weight="550" fill="#1f2733">report_generation</text>
+      <text x="24" y="44" font-size="11" fill="#727d8c" font-family="monospace">task_77f0c1a9</text>
+      <text x="230" y="30" font-size="12" font-weight="600" fill="#b7791f">medium</text>
+      <rect x="330" y="16" width="90" height="22" rx="6" fill="#e3f3ea"/>
+      <circle cx="344" cy="27" r="3.5" fill="#1f8a54"/>
+      <text x="354" y="31" font-size="11.5" font-weight="600" fill="#1f8a54">completed</text>
+      <text x="470" y="30" font-size="13" fill="#46505f">3s</text>
+      <text x="560" y="30" font-size="13" fill="#46505f">3.0s</text>
+      <line x1="24" y1="54" x2="656" y2="54" stroke="#eef1f5"/>
+    </g>
+    <!-- row 3 failed with retries -->
+    <g transform="translate(0,200)">
+      <text x="24" y="28" font-size="13" font-weight="550" fill="#1f2733">flaky_job</text>
+      <text x="24" y="44" font-size="11" fill="#727d8c" font-family="monospace">task_9c23de01</text>
+      <text x="230" y="30" font-size="12" font-weight="600" fill="#727d8c">low</text>
+      <rect x="330" y="16" width="62" height="22" rx="6" fill="#fbe8e8"/>
+      <circle cx="344" cy="27" r="3.5" fill="#c23b3b"/>
+      <text x="354" y="31" font-size="11.5" font-weight="600" fill="#c23b3b">failed</text>
+      <text x="470" y="30" font-size="13" fill="#46505f">1s</text>
+      <text x="560" y="30" font-size="13" fill="#46505f">1.0s</text>
+      <rect x="590" y="18" width="58" height="19" rx="9" fill="#faf0d7"/>
+      <text x="619" y="31" text-anchor="middle" font-size="10.5" font-weight="600" fill="#9a6b00">3 retries</text>
+      <line x1="24" y1="54" x2="656" y2="54" stroke="#eef1f5"/>
+    </g>
+    <!-- row 4 pending with cancel -->
+    <g transform="translate(0,258)">
+      <text x="24" y="28" font-size="13" font-weight="550" fill="#1f2733">email_batch</text>
+      <text x="24" y="44" font-size="11" fill="#727d8c" font-family="monospace">task_4ab8f210</text>
+      <text x="230" y="30" font-size="12" font-weight="600" fill="#b7791f">medium</text>
+      <rect x="330" y="16" width="74" height="22" rx="6" fill="#faf0d7"/>
+      <circle cx="344" cy="27" r="3.5" fill="#9a6b00"/>
+      <text x="354" y="31" font-size="11.5" font-weight="600" fill="#9a6b00">pending</text>
+      <text x="470" y="30" font-size="13" fill="#46505f">8s</text>
+      <text x="560" y="30" font-size="13" fill="#46505f">—</text>
+      <rect x="590" y="16" width="58" height="24" rx="8" fill="#fff" stroke="#d4dae4"/>
+      <text x="619" y="32" text-anchor="middle" font-size="11.5" font-weight="550" fill="#c23b3b">Cancel</text>
+    </g>
+  </g>
+</svg>
