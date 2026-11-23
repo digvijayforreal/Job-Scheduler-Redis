@@ -1,6 +1,9 @@
 # Environment files (may contain Redis passwords)
 .env
 
+# Virtual environment (managed by uv)
+.venv/
+
 # Python
 __pycache__/
 *.pyc
