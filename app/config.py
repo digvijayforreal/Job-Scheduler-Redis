@@ -19,7 +19,7 @@ except ImportError:
 # Number of background workers that pull tasks off the queue.
 # With N workers, up to N tasks run concurrently and never more. Set to 1
 # for strict one-at-a-time ordering; raise it for real concurrency.
-WORKER_COUNT = 3
+WORKER_COUNT = 2
 
 # How often (in seconds) the scheduler wakes up to check whether any
 # scheduled tasks are now due to be moved into the run queue. A small
