@@ -20,7 +20,7 @@ from typing import Dict, List, Optional, Tuple
 from datetime import timezone
 
 from .config import SCHEDULER_POLL_INTERVAL, WORKER_COUNT
-from .models import Task, TaskStatus, _now
+from .models import SchedulePolicy, Task, TaskStatus, _now
 
 # What we actually put on the queue: (priority_rank, sequence, task_id).
 #   priority_rank - high=1, medium=2, low=3 (min-heap pops smallest first)
@@ -119,12 +119,33 @@ class QueueManager:
         self._tasks[task.task_id] = task
 
         if task.scheduled_at is not None and task.scheduled_at > _now():
-            # Hold it back; the scheduler loop will enqueue it when due.
+            # Hold it back; the scheduler loop will release it when due.
             self._scheduled[task.task_id] = task
+            self._save(task)
+        else:
+            self._release(task)
+        return task
+
+    def _has_free_slot(self) -> bool:
+        """True if a task could start running immediately - i.e. there's an
+        idle worker with nothing already queued ahead of it."""
+        queued = self._queue.qsize() if self._queue is not None else 0
+        return (self._worker_count - self._running_now - queued) > 0
+
+    def _release(self, task: Task) -> None:
+        """Send a due task to the queue, or fail it per its schedule policy.
+
+        With the default 'queue' policy the task waits in the queue. With
+        'fail', if no worker is free right now the task is marked failed
+        instead of waiting.
+        """
+        if task.schedule_policy == SchedulePolicy.FAIL and not self._has_free_slot():
+            task.status = TaskStatus.FAILED
+            task.error = "Could not start at scheduled time (all workers busy)"
+            task.finished_at = _now()
         else:
             self._enqueue(task)
         self._save(task)
-        return task
 
     def _enqueue(self, task: Task) -> None:
         """Put a task's id onto the priority queue, ready to run.
@@ -265,10 +286,10 @@ class QueueManager:
                 if task.scheduled_at is not None and task.scheduled_at <= now
             ]
             for task in due:
-                # Remove from holding first, then enqueue if still pending.
+                # Remove from holding first, then release if still pending.
                 self._scheduled.pop(task.task_id, None)
                 if task.status == TaskStatus.PENDING:
-                    self._enqueue(task)
+                    self._release(task)
 
     # --- the worker itself ---------------------------------------------
 

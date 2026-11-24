@@ -82,6 +82,7 @@ async def create_task(payload: TaskCreate) -> TaskResponse:
         scheduled_at=payload.scheduled_at,
         should_fail=payload.should_fail,
         max_retries=payload.max_retries,
+        schedule_policy=payload.schedule_policy,
     )
     queue_manager.submit(task)
     return TaskResponse(

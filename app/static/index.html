@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Task Queue &amp; Scheduler</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
   <div class="bg-grid"></div>
@@ -56,6 +56,14 @@
           <input name="scheduled_at" type="datetime-local" />
         </label>
 
+        <label>
+          If busy at scheduled time
+          <select name="schedule_policy">
+            <option value="queue" selected>Wait in queue</option>
+            <option value="fail">Fail</option>
+          </select>
+        </label>
+
         <label class="checkbox">
           <input name="should_fail" type="checkbox" />
           <span>Make this task fail (demo the FAILED status)</span>
@@ -99,6 +107,6 @@
     </section>
   </main>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

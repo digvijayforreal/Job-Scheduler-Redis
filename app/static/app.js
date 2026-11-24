@@ -16,6 +16,7 @@ $("#task-form").addEventListener("submit", async (e) => {
     task_type: form.task_type.value.trim(),
     duration: Number(form.duration.value),
     priority: form.priority.value,
+    schedule_policy: form.schedule_policy.value,
     should_fail: form.should_fail.checked,
   };
 

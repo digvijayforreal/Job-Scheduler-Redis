@@ -49,6 +49,14 @@ class Priority(str, Enum):
         return {"high": 1, "medium": 2, "low": 3}[self.value]
 
 
+class SchedulePolicy(str, Enum):
+    """What to do when a task can't start at its scheduled time (no free
+    worker)."""
+
+    QUEUE = "queue"  # wait in the queue until a worker is free (default)
+    FAIL = "fail"    # give up and mark the task failed
+
+
 def _now() -> datetime:
     """Timezone-aware 'now' in UTC. Used for all timestamps."""
     return datetime.now(timezone.utc)
@@ -88,6 +96,10 @@ class Task:
     # scheduler holds it back until then.
     scheduled_at: Optional[datetime] = None
 
+    # What to do if no worker is free when the task is due: 'queue' (wait,
+    # default) or 'fail' (give up).
+    schedule_policy: SchedulePolicy = SchedulePolicy.QUEUE
+
     # Bookkeeping timestamps.
     created_at: datetime = field(default_factory=_now)
     started_at: Optional[datetime] = None
@@ -118,6 +130,7 @@ class Task:
             "should_fail": self.should_fail,
             "max_retries": self.max_retries,
             "retries": self.retries,
+            "schedule_policy": self.schedule_policy.value,
             "scheduled_at": iso(self.scheduled_at),
             "created_at": iso(self.created_at),
             "started_at": iso(self.started_at),
@@ -140,6 +153,7 @@ class Task:
             should_fail = d.get("should_fail",False),
             max_retries  = d.get("max_retries",3),
             retries = d.get("retries",0),
+            schedule_policy = SchedulePolicy(d.get("schedule_policy", "queue")),
             scheduled_at = dt(d.get("scheduled_at")), 
             created_at= dt(d.get("created_at")),
             started_at = dt(d.get("started_at")),
@@ -173,6 +187,11 @@ class TaskCreate(BaseModel):
     max_retries: int = Field(
         3, ge=0, description="Times to automatically retry on failure before "
         "the task is marked failed for good.",
+    )
+    schedule_policy: SchedulePolicy = Field(
+        SchedulePolicy.QUEUE,
+        description="If no worker is free at the scheduled time: 'queue' "
+        "(wait, default) or 'fail' (give up).",
     )
 
 
@@ -213,6 +232,7 @@ class TaskDetail(BaseModel):
     error: Optional[str] = None
     retries: int = 0
     max_retries: int = 0
+    schedule_policy: SchedulePolicy = SchedulePolicy.QUEUE
     created_at: datetime
     scheduled_at: Optional[datetime] = None
     started_at: Optional[datetime] = None
@@ -232,6 +252,7 @@ class TaskDetail(BaseModel):
             error=task.error,
             retries=task.retries,
             max_retries=task.max_retries,
+            schedule_policy=task.schedule_policy,
             created_at=task.created_at,
             scheduled_at=task.scheduled_at,
             started_at=task.started_at,
